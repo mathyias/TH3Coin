@@ -202,7 +202,7 @@ public:
 		
 		
         vSeeds.emplace_back("seed.th3chain.cloud", false);
-        //vSeeds.emplace_back("seed-raven.ravencoin.com", false);
+        vSeeds.emplace_back("seed2.th3chain.cloud", false);
         //vSeeds.emplace_back("seed-raven.ravencoin.org", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,60);
