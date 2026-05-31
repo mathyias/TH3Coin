@@ -88,7 +88,7 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char *const RAVEN_CONF_FILENAME = "raven.conf";
+const char *const RAVEN_CONF_FILENAME = "th3.conf";
 const char *const RAVEN_PID_FILENAME = "ravend.pid";
 
 ArgsManager gArgs;
@@ -568,7 +568,7 @@ fs::path GetDefaultDataDir()
     return pathRet / "Library/Application Support/Raven";
 #else
     // Unix
-    return pathRet / ".raven";
+    return pathRet / ".th3";
 #endif
 #endif
 }
