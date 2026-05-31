@@ -201,7 +201,7 @@ public:
 
 		
 		
-        //vSeeds.emplace_back("seed-raven.bitactivate.com", false);
+        vSeeds.emplace_back("seed.th3chain.cloud", false);
         //vSeeds.emplace_back("seed-raven.ravencoin.com", false);
         //vSeeds.emplace_back("seed-raven.ravencoin.org", false);
 
