@@ -273,8 +273,8 @@ public:
         nMessagingActivationBlock = 0; // Messaging activated block height
         nRestrictedActivationBlock = 0; // Restricted activated block height
 
-        nKAAAWWWPOWActivationTime = 0; // UTC: Wed May 06 2020 18:00:00
-        nKAWPOWActivationTime = 0;
+        nKAAAWWWPOWActivationTime = 1780227582; // UTC: Wed May 06 2020 18:00:00
+        nKAWPOWActivationTime = 1780227582;
         /** RVN End **/
     }
 };
