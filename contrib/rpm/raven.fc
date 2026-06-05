@@ -1,8 +1,8 @@
-/usr/bin/raven-cli		--	gen_context(system_u:object_r:raven_exec_t,s0)
-/usr/sbin/ravend		--	gen_context(system_u:object_r:raven_exec_t,s0)
-/usr/lib(64)?/raven/ravend		--	gen_context(system_u:object_r:raven_exec_t,s0)
+/usr/bin/th3-cli		--	gen_context(system_u:object_r:th3_exec_t,s0)
+/usr/sbin/th3d		--	gen_context(system_u:object_r:th3_exec_t,s0)
+/usr/lib(64)?/raven/th3d		--	gen_context(system_u:object_r:th3_exec_t,s0)
 
-/etc/raven(/.*)?		gen_context(system_u:object_r:raven_conf_t,s0)
-/var/lib/raven(/.*)?		gen_context(system_u:object_r:raven_var_lib_t,s0)
+/etc/th3(/.*)?		gen_context(system_u:object_r:th3_conf_t,s0)
+/var/lib/th3(/.*)?		gen_context(system_u:object_r:th3_var_lib_t,s0)
 
-(/var)?/run/ravend(/.*)?   gen_context(system_u:object_r:raven_var_run_t,s0)
+(/var)?/run/th3d(/.*)?   gen_context(system_u:object_r:th3_var_run_t,s0)

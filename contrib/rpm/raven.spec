@@ -24,20 +24,20 @@ URL:		https://raven.org/
 Source0:	https://raven.org/bin/raven-core-%{version}/raven-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
-Source10:	https://raw.githubusercontent.com/raven/raven/v%{version}/contrib/debian/examples/raven.conf
+Source10:	https://raw.githubusercontent.com/raven/raven/v%{version}/contrib/debian/examples/th3.conf
 
 #man pages
-Source20:	https://raw.githubusercontent.com/raven/raven/v%{version}/doc/man/ravend.1
-Source21:	https://raw.githubusercontent.com/raven/raven/v%{version}/doc/man/raven-cli.1
-Source22:	https://raw.githubusercontent.com/raven/raven/v%{version}/doc/man/raven-qt.1
+Source20:	https://raw.githubusercontent.com/raven/raven/v%{version}/doc/man/th3d.1
+Source21:	https://raw.githubusercontent.com/raven/raven/v%{version}/doc/man/th3-cli.1
+Source22:	https://raw.githubusercontent.com/raven/raven/v%{version}/doc/man/th3-qt.1
 
 #selinux
 Source30:	https://raw.githubusercontent.com/raven/raven/v%{version}/contrib/rpm/raven.te
-# Source31 - what about raven-tx and bench_th3 ???
+# Source31 - what about th3-tx and bench_th3 ???
 Source31:	https://raw.githubusercontent.com/raven/raven/v%{version}/contrib/rpm/raven.fc
 Source32:	https://raw.githubusercontent.com/raven/raven/v%{version}/contrib/rpm/raven.if
 
-Source100:	https://upload.wikimedia.org/wikipedia/commons/4/46/Raven.svg
+Source100:	https://upload.wikimedia.org/wikipedia/commons/4/46/TH3.svg
 
 %if 0%{?_use_libressl:1}
 BuildRequires:	libressl-devel
@@ -54,7 +54,7 @@ Patch0:		raven-0.12.0-libressl.patch
 
 
 %description
-Raven is a digital cryptographic currency that uses peer-to-peer technology to
+TH3 is a digital cryptographic currency that uses peer-to-peer technology to
 operate with no central authority or banks; managing transactions and the
 issuing of ravens is carried out collectively by the network.
 
@@ -79,17 +79,17 @@ BuildRequires:	%{_bindir}/inkscape
 BuildRequires:	%{_bindir}/convert
 
 %description core
-Raven is a digital cryptographic currency that uses peer-to-peer technology to
+TH3 is a digital cryptographic currency that uses peer-to-peer technology to
 operate with no central authority or banks; managing transactions and the
 issuing of ravens is carried out collectively by the network.
 
 This package contains the Qt based graphical client and node. If you are looking
-to run a Raven wallet, this is probably the package you want.
+to run a TH3 wallet, this is probably the package you want.
 %endif
 
 
 %package libs
-Summary:	Raven shared libraries
+Summary:	TH3 shared libraries
 Group:		System Environment/Libraries
 
 %description libs
@@ -134,15 +134,15 @@ If you use the graphical raven-core client then you almost certainly do not
 need this package.
 
 %package utils
-Summary:	Raven utilities
+Summary:	TH3 utilities
 Group:		Applications/System
 
 %description utils
 This package provides several command line utilities for interacting with a
 raven-core daemon.
 
-The raven-cli utility allows you to communicate and control a raven daemon
-over RPC, the raven-tx utility allows you to create a custom transaction, and
+The th3-cli utility allows you to communicate and control a raven daemon
+over RPC, the th3-tx utility allows you to create a custom transaction, and
 the bench_th3 utility can be used to perform some benchmarks.
 
 This package contains utilities needed by the raven-server package.
@@ -151,7 +151,7 @@ This package contains utilities needed by the raven-server package.
 %prep
 %setup -q
 %patch0 -p1 -b .libressl
-cp -p %{SOURCE10} ./raven.conf.example
+cp -p %{SOURCE10} ./th3.conf.example
 tar -zxf %{SOURCE1}
 cp -p db-%{bdbv}.NC/LICENSE ./db-%{bdbv}.NC-LICENSE
 mkdir db4 SELinux
@@ -182,14 +182,14 @@ popd
 make install DESTDIR=%{buildroot}
 
 mkdir -p -m755 %{buildroot}%{_sbindir}
-mv %{buildroot}%{_bindir}/ravend %{buildroot}%{_sbindir}/ravend
+mv %{buildroot}%{_bindir}/th3d %{buildroot}%{_sbindir}/th3d
 
 # systemd stuff
 mkdir -p %{buildroot}%{_tmpfilesdir}
-cat <<EOF > %{buildroot}%{_tmpfilesdir}/raven.conf
-d /run/ravend 0750 raven raven -
+cat <<EOF > %{buildroot}%{_tmpfilesdir}/th3.conf
+d /run/th3d 0750 raven raven -
 EOF
-touch -a -m -t 201504280000 %{buildroot}%{_tmpfilesdir}/raven.conf
+touch -a -m -t 201504280000 %{buildroot}%{_tmpfilesdir}/th3.conf
 
 mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
 cat <<EOF > %{buildroot}%{_sysconfdir}/sysconfig/raven
@@ -200,21 +200,21 @@ OPTIONS=""
 
 # System service defaults.
 # Don't change these unless you know what you're doing.
-CONFIG_FILE="%{_sysconfdir}/raven/raven.conf"
+CONFIG_FILE="%{_sysconfdir}/raven/th3.conf"
 DATA_DIR="%{_localstatedir}/lib/raven"
-PID_FILE="/run/ravend/ravend.pid"
+PID_FILE="/run/th3d/th3d.pid"
 EOF
 touch -a -m -t 201504280000 %{buildroot}%{_sysconfdir}/sysconfig/raven
 
 mkdir -p %{buildroot}%{_unitdir}
 cat <<EOF > %{buildroot}%{_unitdir}/raven.service
 [Unit]
-Description=Raven daemon
+Description=TH3 daemon
 After=syslog.target network.target
 
 [Service]
 Type=forking
-ExecStart=%{_sbindir}/ravend -daemon -conf=\${CONFIG_FILE} -datadir=\${DATA_DIR} -pid=\${PID_FILE} \$OPTIONS
+ExecStart=%{_sbindir}/th3d -daemon -conf=\${CONFIG_FILE} -datadir=\${DATA_DIR} -pid=\${PID_FILE} \$OPTIONS
 EnvironmentFile=%{_sysconfdir}/sysconfig/raven
 User=raven
 Group=raven
@@ -265,11 +265,11 @@ mkdir -p %{buildroot}%{_datadir}/applications
 cat <<EOF > %{buildroot}%{_datadir}/applications/raven-core.desktop
 [Desktop Entry]
 Encoding=UTF-8
-Name=Raven
-Comment=Raven P2P Cryptocurrency
-Comment[fr]=Raven, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=Raven, eşten eşe kriptografik sanal para birimi
-Exec=raven-qt %u
+Name=TH3
+Comment=TH3 P2P Cryptocurrency
+Comment[fr]=TH3, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=TH3, eşten eşe kriptografik sanal para birimi
+Exec=th3-qt %u
 Terminal=false
 Type=Application
 Icon=raven128
@@ -284,7 +284,7 @@ touch -a -m -t 201511100546 %{buildroot}%{_datadir}/applications/raven-core.desk
 mkdir -p %{buildroot}%{_datadir}/kde4/services
 cat <<EOF > %{buildroot}%{_datadir}/kde4/services/raven-core.protocol
 [Protocol]
-exec=raven-qt '%u'
+exec=th3-qt '%u'
 protocol=raven
 input=none
 output=none
@@ -300,10 +300,10 @@ touch -a -m -t 201511100546 %{buildroot}%{_datadir}/kde4/services/raven-core.pro
 %endif
 
 # man pages
-install -D -p %{SOURCE20} %{buildroot}%{_mandir}/man1/ravend.1
-install -p %{SOURCE21} %{buildroot}%{_mandir}/man1/raven-cli.1
+install -D -p %{SOURCE20} %{buildroot}%{_mandir}/man1/th3d.1
+install -p %{SOURCE21} %{buildroot}%{_mandir}/man1/th3-cli.1
 %if %{_buildqt}
-install -p %{SOURCE22} %{buildroot}%{_mandir}/man1/raven-qt.1
+install -p %{SOURCE22} %{buildroot}%{_mandir}/man1/th3-qt.1
 %endif
 
 # nuke these, we do extensive testing of binaries in %%check before packaging
@@ -321,8 +321,8 @@ test/functional/test_runner.py --extended
 %pre server
 getent group raven >/dev/null || groupadd -r raven
 getent passwd raven >/dev/null ||
-	useradd -r -g raven -d /var/lib/raven -s /sbin/nologin \
-	-c "Raven wallet server" raven
+	useradd -r -g raven -d /var/lib/th3 -s /sbin/nologin \
+	-c "TH3 wallet server" raven
 exit 0
 
 %post server
@@ -375,8 +375,8 @@ rm -rf %{buildroot}
 %files core
 %defattr(-,root,root,-)
 %license COPYING db-%{bdbv}.NC-LICENSE
-%doc COPYING raven.conf.example doc/README.md doc/bips.md doc/files.md doc/multiwallet-qt.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
-%attr(0755,root,root) %{_bindir}/raven-qt
+%doc COPYING th3.conf.example doc/README.md doc/bips.md doc/files.md doc/multiwallet-qt.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
+%attr(0755,root,root) %{_bindir}/th3-qt
 %attr(0644,root,root) %{_datadir}/applications/raven-core.desktop
 %attr(0644,root,root) %{_datadir}/kde4/services/raven-core.protocol
 %attr(0644,root,root) %{_datadir}/pixmaps/*.ico
@@ -384,7 +384,7 @@ rm -rf %{buildroot}
 %attr(0644,root,root) %{_datadir}/pixmaps/*.svg
 %attr(0644,root,root) %{_datadir}/pixmaps/*.png
 %attr(0644,root,root) %{_datadir}/pixmaps/*.xpm
-%attr(0644,root,root) %{_mandir}/man1/raven-qt.1*
+%attr(0644,root,root) %{_mandir}/man1/th3-qt.1*
 %endif
 
 %files libs
@@ -406,24 +406,24 @@ rm -rf %{buildroot}
 %files server
 %defattr(-,root,root,-)
 %license COPYING db-%{bdbv}.NC-LICENSE
-%doc COPYING raven.conf.example doc/README.md doc/REST-interface.md doc/bips.md doc/dnsseed-policy.md doc/files.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
-%attr(0755,root,root) %{_sbindir}/ravend
-%attr(0644,root,root) %{_tmpfilesdir}/raven.conf
+%doc COPYING th3.conf.example doc/README.md doc/REST-interface.md doc/bips.md doc/dnsseed-policy.md doc/files.md doc/reduce-traffic.md doc/release-notes.md doc/tor.md
+%attr(0755,root,root) %{_sbindir}/th3d
+%attr(0644,root,root) %{_tmpfilesdir}/th3.conf
 %attr(0644,root,root) %{_unitdir}/raven.service
 %dir %attr(0750,raven,raven) %{_sysconfdir}/raven
 %dir %attr(0750,raven,raven) %{_localstatedir}/lib/raven
 %config(noreplace) %attr(0600,root,root) %{_sysconfdir}/sysconfig/raven
 %attr(0644,root,root) %{_datadir}/selinux/*/*.pp
-%attr(0644,root,root) %{_mandir}/man1/ravend.1*
+%attr(0644,root,root) %{_mandir}/man1/th3d.1*
 
 %files utils
 %defattr(-,root,root,-)
 %license COPYING
-%doc COPYING raven.conf.example doc/README.md
-%attr(0755,root,root) %{_bindir}/raven-cli
-%attr(0755,root,root) %{_bindir}/raven-tx
+%doc COPYING th3.conf.example doc/README.md
+%attr(0755,root,root) %{_bindir}/th3-cli
+%attr(0755,root,root) %{_bindir}/th3-tx
 %attr(0755,root,root) %{_bindir}/bench_th3
-%attr(0644,root,root) %{_mandir}/man1/raven-cli.1*
+%attr(0644,root,root) %{_mandir}/man1/th3-cli.1*
 
 
 

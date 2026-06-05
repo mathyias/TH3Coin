@@ -4,10 +4,10 @@ TOPDIR=${TOPDIR:-$(git rev-parse --show-toplevel)}
 SRCDIR=${SRCDIR:-$TOPDIR/src}
 MANDIR=${MANDIR:-$TOPDIR/doc/man}
 
-RAVEND=${RAVEND:-$SRCDIR/ravend}
-RAVENCLI=${RAVENCLI:-$SRCDIR/raven-cli}
-RAVENTX=${RAVENTX:-$SRCDIR/raven-tx}
-RAVENQT=${RAVENQT:-$SRCDIR/qt/raven-qt}
+RAVEND=${RAVEND:-$SRCDIR/th3d}
+RAVENCLI=${RAVENCLI:-$SRCDIR/th3-cli}
+RAVENTX=${RAVENTX:-$SRCDIR/th3-tx}
+RAVENQT=${RAVENQT:-$SRCDIR/qt/th3-qt}
 
 [ ! -x $RAVEND ] && echo "$RAVEND not found or not executable." && exit 1
 
@@ -15,8 +15,8 @@ RAVENQT=${RAVENQT:-$SRCDIR/qt/raven-qt}
 RVNVER=($($RAVENCLI --version | head -n1 | awk -F'[ -]' '{ print $6, $7 }'))
 
 # Create a footer file with copyright content.
-# This gets autodetected fine for ravend if --version-string is not set,
-# but has different outcomes for raven-qt and raven-cli.
+# This gets autodetected fine for th3d if --version-string is not set,
+# but has different outcomes for th3-qt and th3-cli.
 echo "[COPYRIGHT]" > footer.h2m
 $RAVEND --version | sed -n '1!p' >> footer.h2m
 

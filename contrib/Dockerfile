@@ -31,33 +31,33 @@ RUN apt-get update && \
 	apt-get clean
 
 #Copy source dir
-COPY . /home/raven/build/Ravencoin/
-WORKDIR /home/raven/build/Ravencoin
+COPY . /home/th3/build/TH3Chain/
+WORKDIR /home/th3/build/TH3Chain
 
 #build db4 from source
-WORKDIR /home/raven/build/Ravencoin/contrib
+WORKDIR /home/th3/build/TH3Chain/contrib
 RUN ./install_db4.sh ../../
 
-# build Ravencore
-WORKDIR /home/raven/build/Ravencoin
-RUN ./autogen.sh && ./configure --disable-tests BDB_LIBS="-L/home/raven/build/db4/lib -ldb_cxx-4.8" BDB_CFLAGS="-I/home/raven/build/db4/include" --with-gui=no  && make -j4
+# build TH3core
+WORKDIR /home/th3/build/TH3Chain
+RUN ./autogen.sh && ./configure --disable-tests BDB_LIBS="-L/home/th3/build/db4/lib -ldb_cxx-4.8" BDB_CFLAGS="-I/home/th3/build/db4/include" --with-gui=no  && make -j4
 
 FROM base AS final
 
 #Add our service account user
 RUN useradd -ms /bin/bash raven && \
-	mkdir /var/lib/raven && \
-	chown raven:raven /var/lib/raven && \
-	ln -s /var/lib/raven /home/raven/.raven && \
+	mkdir /var/lib/th3 && \
+	chown raven:raven /var/lib/th3 && \
+	ln -s /var/lib/th3 /home/raven/.raven && \
 	chown -h raven:raven /home/raven/.raven
 
-VOLUME /var/lib/raven
+VOLUME /var/lib/th3
 
 #Copy the compiled binaries from the build
-COPY --from=build /home/raven/build/Ravencoin/src/ravend /usr/local/bin/ravend
-COPY --from=build /home/raven/build/Ravencoin/src/raven-cli /usr/local/bin/raven-cli
+COPY --from=build /home/th3/build/TH3Chain/src/th3d /usr/local/bin/th3d
+COPY --from=build /home/th3/build/TH3Chain/src/th3-cli /usr/local/bin/th3-cli
 
 WORKDIR /home/raven
 USER raven
 
-CMD /usr/local/bin/ravend -datadir=/var/lib/raven -printtoconsole -onlynet=ipv4
+CMD /usr/local/bin/th3d -datadir=/var/lib/th3 -printtoconsole -onlynet=ipv4
