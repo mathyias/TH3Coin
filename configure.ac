@@ -1175,7 +1175,7 @@ if test x$raven_enable_qt != xno; then
     AC_MSG_WARN("xgettext is required to update qt translations")
   fi
 
-  AC_MSG_CHECKING([whether to build test_raven-qt])
+  AC_MSG_CHECKING([whether to build test_th3-qt])
   if test x$use_gui_tests$raven_enable_qt_test = xyesyes; then
     AC_MSG_RESULT([yes])
     BUILD_TEST_QT="yes"
