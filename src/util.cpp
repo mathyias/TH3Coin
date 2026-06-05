@@ -926,7 +926,7 @@ std::string CopyrightHolders(const std::string &strPrefix)
 {
     std::string strCopyrightHolders = strPrefix + strprintf(_(COPYRIGHT_HOLDERS), _(COPYRIGHT_HOLDERS_SUBSTITUTION));
 
-    // Check for untranslated substitution to make sure Raven Core copyright is not removed by accident
+    // Check for untranslated substitution to make sure TH3 Core copyright is not removed by accident
     if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("TH3 Core") == std::string::npos)
     {
         strCopyrightHolders += "\n" + strPrefix + "The TH3 Core developers";
