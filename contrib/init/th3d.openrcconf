@@ -1,31 +1,31 @@
-# /etc/conf.d/ravend: config file for /etc/init.d/ravend
+# /etc/conf.d/th3d: config file for /etc/init.d/th3d
 
 # Config file location
-#RAVEND_CONFIGFILE="/etc/raven/raven.conf"
+#RAVEND_CONFIGFILE="/etc/th3/th3.conf"
 
 # What directory to write pidfile to?  (created and owned by $RAVEND_USER)
-#RAVEND_PIDDIR="/var/run/ravend"
+#RAVEND_PIDDIR="/var/run/th3d"
 
 # What filename to give the pidfile
-#RAVEND_PIDFILE="${RAVEND_PIDDIR}/ravend.pid"
+#RAVEND_PIDFILE="${RAVEND_PIDDIR}/th3d.pid"
 
-# Where to write ravend data (be mindful that the blockchain is large)
-#RAVEND_DATADIR="/var/lib/ravend"
+# Where to write th3d data (be mindful that the blockchain is large)
+#RAVEND_DATADIR="/var/lib/th3d"
 
-# User and group to own ravend process
+# User and group to own th3d process
 #RAVEND_USER="raven"
 #RAVEND_GROUP="raven"
 
-# Path to ravend executable
-#RAVEND_BIN="/usr/bin/ravend"
+# Path to th3d executable
+#RAVEND_BIN="/usr/bin/th3d"
 
-# Nice value to run ravend under
+# Nice value to run th3d under
 #RAVEND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)
 #RAVEND_OPTS=""
 
-# The timeout in seconds OpenRC will wait for ravend to terminate
+# The timeout in seconds OpenRC will wait for th3d to terminate
 # after a SIGTERM has been raised.
 # Note that this will be mapped as argument to start-stop-daemon's
 # '--retry' option, which means you can specify a retry schedule

@@ -1,6 +1,6 @@
-# `raven.conf` Configuration File
+# `th3.conf` Configuration File
 
-The configuration file is used by `ravend`, `raven-qt` and `raven-cli`.
+The configuration file is used by `th3d`, `th3-qt` and `th3-cli`.
 
 All command-line options (except for `-?`, `-help`, `-version` and `-conf`) may be specified in a configuration file, and all configuration file options (except for `includeconf`) may also be specified on the command line. Command-line options override values set in the configuration file and configuration file options override values set in the GUI.
 
@@ -46,16 +46,16 @@ rpcport=4000
 
 ## Configuration File Path
 
-The configuration file is not automatically created; you can create it using your favorite text editor. By default, the configuration file name is `raven.conf` and it is located in the Raven data directory, but both the Raven data directory and the configuration file path may be changed using the `-datadir` and `-conf` command-line options.
+The configuration file is not automatically created; you can create it using your favorite text editor. By default, the configuration file name is `th3.conf` and it is located in the TH3 data directory, but both the TH3 data directory and the configuration file path may be changed using the `-datadir` and `-conf` command-line options.
 
-The `includeconf=<file>` option in the `raven.conf` file can be used to include additional configuration files.
+The `includeconf=<file>` option in the `th3.conf` file can be used to include additional configuration files.
 
 ### Default configuration file locations
 
 Operating System | Data Directory | Example Path
 -- | -- | --
-Windows | `%APPDATA%\Raven\` | `C:\Users\username\AppData\Roaming\Raven\raven.conf`
-Linux | `$HOME/.raven/` | `/home/username/.raven/raven.conf`
-macOS | `$HOME/Library/Application Support/Rave /` | `/Users/username/Library/Application Support/Raven/raven.conf`
+Windows | `%APPDATA%\TH3\` | `C:\Users\username\AppData\Roaming\TH3\th3.conf`
+Linux | `$HOME/.th3/` | `/home/username/.th3/th3.conf`
+macOS | `$HOME/Library/Application Support/Rave /` | `/Users/username/Library/Application Support/TH3/th3.conf`
 
-You can find an example raven.conf file in [share/examples/raven.conf](../share/examples/raven.conf).
+You can find an example th3.conf file in [share/examples/th3.conf](../share/examples/th3.conf).

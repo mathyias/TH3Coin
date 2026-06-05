@@ -1,36 +1,36 @@
 #!/bin/bash
 #
-#  ravend The raven core server.
+#  th3d The raven core server.
 #
 #
 # chkconfig: 345 80 20
-# description: ravend
-# processname: ravend
+# description: th3d
+# processname: th3d
 #
 
 # Source function library.
 . /etc/init.d/functions
 
-# you can override defaults in /etc/sysconfig/ravend, see below
-if [ -f /etc/sysconfig/ravend ]; then
-        . /etc/sysconfig/ravend
+# you can override defaults in /etc/sysconfig/th3d, see below
+if [ -f /etc/sysconfig/th3d ]; then
+        . /etc/sysconfig/th3d
 fi
 
 RETVAL=0
 
-prog=ravend
-# you can override the lockfile via RAVEND_LOCKFILE in /etc/sysconfig/ravend
-lockfile=${RAVEND_LOCKFILE-/var/lock/subsys/ravend}
+prog=th3d
+# you can override the lockfile via RAVEND_LOCKFILE in /etc/sysconfig/th3d
+lockfile=${RAVEND_LOCKFILE-/var/lock/subsys/th3d}
 
-# ravend defaults to /usr/bin/ravend, override with RAVEND_BIN
-ravend=${RAVEND_BIN-/usr/bin/ravend}
+# th3d defaults to /usr/bin/th3d, override with RAVEND_BIN
+th3d=${RAVEND_BIN-/usr/bin/th3d}
 
-# ravend opts default to -disablewallet, override with RAVEND_OPTS
-ravend_opts=${RAVEND_OPTS--disablewallet}
+# th3d opts default to -disablewallet, override with RAVEND_OPTS
+th3d_opts=${RAVEND_OPTS--disablewallet}
 
 start() {
     echo -n $"Starting $prog: "
-    daemon $DAEMONOPTS $ravend $ravend_opts
+    daemon $DAEMONOPTS $th3d $th3d_opts
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && touch $lockfile

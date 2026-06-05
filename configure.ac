@@ -12,14 +12,14 @@ define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[TH3 Core]])
 AC_INIT([TH3 Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [test]_CLIENT_VERSION_RC),[https://github.com/mathyias/TH3Coin/issues],[TH3],[https://th3chain.cloud/])
 
 AC_CONFIG_SRCDIR([src/validation.cpp])
-AC_CONFIG_HEADERS([src/config/raven-config.h])
+AC_CONFIG_HEADERS([src/config/th3-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
-RAVEN_DAEMON_NAME=ravend
-RAVEN_GUI_NAME=raven-qt
-RAVEN_CLI_NAME=raven-cli
-RAVEN_TX_NAME=raven-tx
+RAVEN_DAEMON_NAME=th3d
+RAVEN_GUI_NAME=th3-qt
+RAVEN_CLI_NAME=th3-cli
+RAVEN_TX_NAME=th3-tx
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -29,9 +29,9 @@ fi
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef RAVEN_CONFIG_H])
-AH_TOP([#define RAVEN_CONFIG_H])
-AH_BOTTOM([#endif //RAVEN_CONFIG_H])
+AH_TOP([#ifndef TH3_CONFIG_H])
+AH_TOP([#define TH3_CONFIG_H])
+AH_BOTTOM([#endif //TH3_CONFIG_H])
 
 dnl faketime breaks configure and is only needed for make. Disable it here.
 unset FAKETIME
@@ -301,13 +301,13 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([cli],
   [AS_HELP_STRING([--with-cli],
-  [build raven-cli (default=yes)])],
+  [build th3-cli (default=yes)])],
   [build_raven_cli=$withval],
   [build_raven_cli=yes])
 
 AC_ARG_WITH([tx],
   [AS_HELP_STRING([--with-tx],
-  [build raven-tx (default=no)])],
+  [build th3-tx (default=no)])],
   [build_raven_tx=$withval],
   [build_raven_tx=no])
 
@@ -319,7 +319,7 @@ AC_ARG_WITH([libs],
 
 AC_ARG_WITH([daemon],
   [AS_HELP_STRING([--with-daemon],
-  [build ravend daemon (default=yes)])],
+  [build th3d daemon (default=yes)])],
   [build_ravend=$withval],
   [build_ravend=yes])
 
@@ -518,7 +518,7 @@ AC_C_BIGENDIAN
 dnl Check for pthread compile/link requirements
 AX_PTHREAD
 
-# The following macro will add the necessary defines to raven-config.h, but
+# The following macro will add the necessary defines to th3-config.h, but
 # they also need to be passed down to any subprojects. Pull the results out of
 # the cache and add them to CPPFLAGS.
 AC_SYS_LARGEFILE
@@ -1066,15 +1066,15 @@ AC_SUBST(UNIVALUE_LIBS)
 
 RAVEN_QT_PATH_PROGS([PROTOC], [protoc],$protoc_bin_path)
 
-AC_MSG_CHECKING([whether to build ravend])
+AC_MSG_CHECKING([whether to build th3d])
 AM_CONDITIONAL([BUILD_RAVEND], [test x$build_ravend = xyes])
 AC_MSG_RESULT($build_ravend)
 
-AC_MSG_CHECKING([whether to build raven-cli])
+AC_MSG_CHECKING([whether to build th3-cli])
 AM_CONDITIONAL([BUILD_RAVEN_CLI], [test x$build_raven_cli = xyes])
 AC_MSG_RESULT($build_raven_cli)
 
-AC_MSG_CHECKING([whether to build raven-tx])
+AC_MSG_CHECKING([whether to build th3-tx])
 AM_CONDITIONAL([BUILD_RAVEN_TX], [test x$build_raven_tx = xyes])
 AC_MSG_RESULT($build_raven_tx)
 
@@ -1330,8 +1330,8 @@ esac
 
 echo
 echo "Options used to compile and link:"
-echo "  build raven-cli = $build_raven_cli"
-echo "  build raven-tx  = $build_raven_tx"
+echo "  build th3-cli = $build_raven_cli"
+echo "  build th3-tx  = $build_raven_tx"
 echo "  with wallet     = $enable_wallet"
 echo "  with gui / qt   = $raven_enable_qt"
 if test x$raven_enable_qt != xno; then
