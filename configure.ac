@@ -1082,7 +1082,7 @@ AC_MSG_CHECKING([whether to build libraries])
 AM_CONDITIONAL([BUILD_RAVEN_LIBS], [test x$build_raven_libs = xyes])
 if test x$build_raven_libs = xyes; then
   AC_DEFINE(HAVE_CONSENSUS_LIB, 1, [Define this symbol if the consensus lib has been built])
-  AC_CONFIG_FILES([libravenconsensus.pc:libravenconsensus.pc.in])
+  AC_CONFIG_FILES([libth3consensus.pc:libth3consensus.pc.in])
 fi
 AC_MSG_RESULT($build_raven_libs)
 
@@ -1186,7 +1186,7 @@ fi
 
 AM_CONDITIONAL([ENABLE_ZMQ], [test "x$use_zmq" = "xyes"])
 
-AC_MSG_CHECKING([whether to build test_raven])
+AC_MSG_CHECKING([whether to build test_th3])
 if test x$use_tests = xyes; then
   AC_MSG_RESULT([yes])
   BUILD_TEST="yes"
