@@ -512,7 +512,7 @@ bool openRavenConf()
     
     configFile.close();
     
-    /* Open raven.conf with the associated application */
+    /* Open th3.conf with the associated application */
     return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 }
 

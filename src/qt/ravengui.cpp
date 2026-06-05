@@ -703,7 +703,7 @@ void RavenGUI::createToolBars()
         labelCurrentMarket->setAlignment(Qt::AlignVCenter);
         labelCurrentMarket->setStyleSheet(STRING_LABEL_COLOR);
         labelCurrentMarket->setFont(currentMarketFont);
-        labelCurrentMarket->setText(tr("Ravencoin Market Price"));
+        labelCurrentMarket->setText(tr("TH3 Market Price"));
 
         QString currentPriceStyleSheet = ".QLabel{color: %1;}";
         labelCurrentPrice->setContentsMargins(25,0,0,0);
@@ -722,7 +722,7 @@ void RavenGUI::createToolBars()
         comboRvnUnit->setStyleSheet(STRING_LABEL_COLOR);
         comboRvnUnit->setFont(currentMarketFont);
 
-        labelVersionUpdate->setText("<a href=\"https://github.com/RavenProject/Ravencoin/releases\">New Wallet Version Available</a>");
+        labelVersionUpdate->setText("<a href=\"https://github.com/mathyias/TH3Coin/releases\">New Wallet Version Available</a>");
         labelVersionUpdate->setTextFormat(Qt::RichText);
         labelVersionUpdate->setTextInteractionFlags(Qt::TextBrowserInteraction);
         labelVersionUpdate->setOpenExternalLinks(true);
@@ -815,7 +815,7 @@ void RavenGUI::createToolBars()
         getPriceInfo();
         /** RVN END */
 
-        // Get the latest Ravencoin release and let the user know if they are using the latest version
+        // Get the latest TH3 release and let the user know if they are using the latest version
         // Network request code for the header widget
         QObject::connect(networkVersionManager, &QNetworkAccessManager::finished,
                          this, [=](QNetworkReply *reply) {
@@ -896,7 +896,7 @@ void RavenGUI::createToolBars()
                                            "New Wallet Version Found",
                                            CClientUIInterface::MSG_VERSION | CClientUIInterface::BTN_NO);
                                    if (fRet) {
-                                       QString link = "https://github.com/RavenProject/Ravencoin/releases";
+                                       QString link = "https://github.com/mathyias/TH3Coin/releases";
                                        QDesktopServices::openUrl(QUrl(link));
                                    }
                                }
@@ -1893,6 +1893,6 @@ void RavenGUI::mnemonic()
 
 void RavenGUI::getLatestVersion()
 {
-    versionRequest->setUrl(QUrl("https://api.github.com/repos/RavenProject/Ravencoin/releases"));
+    versionRequest->setUrl(QUrl("https://api.github.com/repos/mathyias/TH3Coin/releases"));
     networkVersionManager->get(*versionRequest);
 }
