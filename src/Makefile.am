@@ -476,13 +476,13 @@ nodist_libraven_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # th3d binary #
-th3d_SOURCES = ravend.cpp
+th3d_SOURCES = th3d.cpp
 th3d_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
 th3d_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 th3d_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-th3d_SOURCES += ravend-res.rc
+th3d_SOURCES += th3d-res.rc
 endif
 
 th3d_LDADD = \
@@ -502,13 +502,13 @@ th3d_LDADD = \
 th3d_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
 # th3-cli binary #
-th3_cli_SOURCES = raven-cli.cpp
+th3_cli_SOURCES = th3-cli.cpp
 th3_cli_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES) $(EVENT_CFLAGS)
 th3_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 th3_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-th3_cli_SOURCES += raven-cli-res.rc
+th3_cli_SOURCES += th3-cli-res.rc
 endif
 
 th3_cli_LDADD = \
@@ -521,13 +521,13 @@ th3_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # th3-tx binary #
-th3_tx_SOURCES = raven-tx.cpp
+th3_tx_SOURCES = th3-tx.cpp
 th3_tx_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
 th3_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 th3_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-th3_tx_SOURCES += raven-tx-res.rc
+th3_tx_SOURCES += th3-tx-res.rc
 endif
 
 th3_tx_LDADD = \
