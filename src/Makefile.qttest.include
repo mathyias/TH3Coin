@@ -26,10 +26,10 @@ TEST_QT_H = \
   qt/test/wallettests.h
 
 TEST_RAVEN_CPP = \
-  test/test_raven.cpp
+  test/test_th3.cpp
 
 TEST_RAVEN_H = \
-  test/test_raven.h
+  test/test_th3.h
 
 qt_test_test_th3_qt_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES) $(RAVEN_QT_INCLUDES) \
   $(QT_INCLUDES) $(QT_TEST_INCLUDES) $(PROTOBUF_CFLAGS)

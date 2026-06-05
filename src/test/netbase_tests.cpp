@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "netbase.h"
-#include "test/test_raven.h"
+#include "test/test_th3.h"
 #include "utilstrencodings.h"
 
 #include <string>

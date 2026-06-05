@@ -33,7 +33,7 @@ Source22:	https://raw.githubusercontent.com/raven/raven/v%{version}/doc/man/rave
 
 #selinux
 Source30:	https://raw.githubusercontent.com/raven/raven/v%{version}/contrib/rpm/raven.te
-# Source31 - what about raven-tx and bench_raven ???
+# Source31 - what about raven-tx and bench_th3 ???
 Source31:	https://raw.githubusercontent.com/raven/raven/v%{version}/contrib/rpm/raven.fc
 Source32:	https://raw.githubusercontent.com/raven/raven/v%{version}/contrib/rpm/raven.if
 
@@ -143,7 +143,7 @@ raven-core daemon.
 
 The raven-cli utility allows you to communicate and control a raven daemon
 over RPC, the raven-tx utility allows you to create a custom transaction, and
-the bench_raven utility can be used to perform some benchmarks.
+the bench_th3 utility can be used to perform some benchmarks.
 
 This package contains utilities needed by the raven-server package.
 
@@ -422,7 +422,7 @@ rm -rf %{buildroot}
 %doc COPYING raven.conf.example doc/README.md
 %attr(0755,root,root) %{_bindir}/raven-cli
 %attr(0755,root,root) %{_bindir}/raven-tx
-%attr(0755,root,root) %{_bindir}/bench_raven
+%attr(0755,root,root) %{_bindir}/bench_th3
 %attr(0644,root,root) %{_mandir}/man1/raven-cli.1*
 
 

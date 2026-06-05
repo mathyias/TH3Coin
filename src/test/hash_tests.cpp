@@ -5,7 +5,7 @@
 
 #include "hash.h"
 #include "utilstrencodings.h"
-#include "test/test_raven.h"
+#include "test/test_th3.h"
 #include "consensus/merkle.h"
 
 #include <vector>

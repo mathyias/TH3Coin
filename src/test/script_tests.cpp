@@ -13,7 +13,7 @@
 #include "script/sign.h"
 #include "util.h"
 #include "utilstrencodings.h"
-#include "test/test_raven.h"
+#include "test/test_th3.h"
 #include "rpc/server.h"
 
 #if defined(HAVE_CONSENSUS_LIB)
