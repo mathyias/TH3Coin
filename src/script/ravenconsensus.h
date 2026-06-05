@@ -9,7 +9,7 @@
 
 #include <stdint.h>
 
-#if defined(BUILD_RAVEN_INTERNAL) && defined(HAVE_CONFIG_H)
+#if defined(BUILD_TH3_INTERNAL) && defined(HAVE_CONFIG_H)
 #include "config/th3-config.h"
   #if defined(_WIN32)
     #if defined(DLL_EXPORT)
@@ -22,7 +22,7 @@
   #elif defined(HAVE_FUNC_ATTRIBUTE_VISIBILITY)
     #define EXPORT_SYMBOL __attribute__ ((visibility ("default")))
   #endif
-#elif defined(MSC_VER) && !defined(STATIC_LIBRAVENCONSENSUS)
+#elif defined(MSC_VER) && !defined(STATIC_LIBTH3CONSENSUS)
   #define EXPORT_SYMBOL __declspec(dllimport)
 #endif
 

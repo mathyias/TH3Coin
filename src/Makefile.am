@@ -24,23 +24,23 @@ RAVEN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS)
 RAVEN_INCLUDES += -I$(srcdir)/secp256k1/include
 RAVEN_INCLUDES += $(UNIVALUE_CFLAGS)
 
-LIBRAVEN_SERVER=libraven_server.a
-LIBRAVEN_COMMON=libraven_common.a
-LIBRAVEN_CONSENSUS=libraven_consensus.a
-LIBRAVEN_CLI=libraven_cli.a
-LIBRAVEN_UTIL=libraven_util.a
-LIBRAVEN_CRYPTO=crypto/libraven_crypto.a
-LIBRAVENQT=qt/libravenqt.a
+LIBTH3_SERVER=libth3_server.a
+LIBTH3_COMMON=libth3_common.a
+LIBTH3_CONSENSUS=libth3_consensus.a
+LIBTH3_CLI=libth3_cli.a
+LIBTH3_UTIL=libth3_util.a
+LIBTH3_CRYPTO=crypto/libth3_crypto.a
+LIBTH3QT=qt/libth3qt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBRAVEN_ZMQ=libraven_zmq.a
+LIBTH3_ZMQ=libth3_zmq.a
 endif
 if BUILD_RAVEN_LIBS
-LIBRAVENCONSENSUS=libravenconsensus.la
+LIBTH3CONSENSUS=libth3consensus.la
 endif
 if ENABLE_WALLET
-LIBRAVEN_WALLET=libraven_wallet.a
+LIBTH3_WALLET=libth3_wallet.a
 endif
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
@@ -49,16 +49,16 @@ $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
 EXTRA_LIBRARIES += \
-  $(LIBRAVEN_CRYPTO) \
-  $(LIBRAVEN_UTIL) \
-  $(LIBRAVEN_COMMON) \
-  $(LIBRAVEN_CONSENSUS) \
-  $(LIBRAVEN_SERVER) \
-  $(LIBRAVEN_CLI) \
-  $(LIBRAVEN_WALLET) \
-  $(LIBRAVEN_ZMQ)
+  $(LIBTH3_CRYPTO) \
+  $(LIBTH3_UTIL) \
+  $(LIBTH3_COMMON) \
+  $(LIBTH3_CONSENSUS) \
+  $(LIBTH3_SERVER) \
+  $(LIBTH3_CLI) \
+  $(LIBTH3_WALLET) \
+  $(LIBTH3_ZMQ)
 
-lib_LTLIBRARIES = $(LIBRAVENCONSENSUS)
+lib_LTLIBRARIES = $(LIBTH3CONSENSUS)
 
 bin_PROGRAMS =
 noinst_PROGRAMS =
@@ -240,12 +240,12 @@ obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh "$(abs_top_builddir)/src/obj/build.h" \
 	  "$(abs_top_srcdir)"
-libraven_util_a-clientversion.$(OBJEXT): obj/build.h
+libth3_util_a-clientversion.$(OBJEXT): obj/build.h
 
 # server: shared between th3d and th3-qt
-libraven_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libraven_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraven_server_a_SOURCES = \
+libth3_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libth3_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libth3_server_a_SOURCES = \
   addrdb.cpp \
   addrman.cpp \
   bloom.cpp \
@@ -300,9 +300,9 @@ libraven_server_a_SOURCES = \
   $(RAVEN_CORE_H)
 
 if ENABLE_ZMQ
-libraven_zmq_a_CPPFLAGS = $(RAVEN_INCLUDES) $(ZMQ_CFLAGS)
-libraven_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraven_zmq_a_SOURCES = \
+libth3_zmq_a_CPPFLAGS = $(RAVEN_INCLUDES) $(ZMQ_CFLAGS)
+libth3_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libth3_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp
@@ -311,9 +311,9 @@ endif
 
 # wallet: shared between th3d and th3-qt, but only linked
 # when wallet enabled
-libraven_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
-libraven_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraven_wallet_a_SOURCES = \
+libth3_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
+libth3_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libth3_wallet_a_SOURCES = \
   wallet/crypter.cpp \
   wallet/db.cpp \
   wallet/feebumper.cpp \
@@ -327,9 +327,9 @@ libraven_wallet_a_SOURCES = \
   $(RAVEN_CORE_H)
 
 # crypto primitives library
-crypto_libraven_crypto_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libraven_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libraven_crypto_a_SOURCES = \
+crypto_libth3_crypto_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libth3_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libth3_crypto_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
   crypto/chacha20.h \
@@ -372,13 +372,13 @@ crypto_libraven_crypto_a_SOURCES = \
   crypto/ethash/progpow_test_vectors.hpp
 
 if USE_ASM
-crypto_libraven_crypto_a_SOURCES += crypto/sha256_sse4.cpp
+crypto_libth3_crypto_a_SOURCES += crypto/sha256_sse4.cpp
 endif
 
 # consensus: shared between all executables that validate any consensus rules.
-libraven_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
-libraven_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraven_consensus_a_SOURCES = \
+libth3_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
+libth3_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libth3_consensus_a_SOURCES = \
   amount.h \
   arith_uint256.cpp \
   arith_uint256.h \
@@ -416,9 +416,9 @@ libraven_consensus_a_SOURCES = \
   $(RAVEN_CORE_H)
 
 # common: shared between th3d, and th3-qt and non-server tools
-libraven_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
-libraven_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraven_common_a_SOURCES = \
+libth3_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
+libth3_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libth3_common_a_SOURCES = \
   base58.cpp \
   chainparams.cpp \
   coins.cpp \
@@ -440,9 +440,9 @@ libraven_common_a_SOURCES = \
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libraven_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
-libraven_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraven_util_a_SOURCES = \
+libth3_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
+libth3_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libth3_util_a_SOURCES = \
   support/lockedpool.cpp \
   chainparamsbase.cpp \
   clientversion.cpp \
@@ -461,18 +461,18 @@ libraven_util_a_SOURCES = \
   $(RAVEN_CORE_H)
 
 if GLIBC_BACK_COMPAT
-libraven_util_a_SOURCES += compat/glibc_compat.cpp
+libth3_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
 # cli: shared between th3-cli and th3-qt
-libraven_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
-libraven_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libraven_cli_a_SOURCES = \
+libth3_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(RAVEN_INCLUDES)
+libth3_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libth3_cli_a_SOURCES = \
   rpc/client.cpp \
   $(RAVEN_CORE_H)
 
-nodist_libraven_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libth3_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # th3d binary #
@@ -486,14 +486,14 @@ th3d_SOURCES += th3d-res.rc
 endif
 
 th3d_LDADD = \
-  $(LIBRAVEN_SERVER) \
-  $(LIBRAVEN_COMMON) \
+  $(LIBTH3_SERVER) \
+  $(LIBTH3_COMMON) \
   $(LIBUNIVALUE) \
-  $(LIBRAVEN_UTIL) \
-  $(LIBRAVEN_WALLET) \
-  $(LIBRAVEN_ZMQ) \
-  $(LIBRAVEN_CONSENSUS) \
-  $(LIBRAVEN_CRYPTO) \
+  $(LIBTH3_UTIL) \
+  $(LIBTH3_WALLET) \
+  $(LIBTH3_ZMQ) \
+  $(LIBTH3_CONSENSUS) \
+  $(LIBTH3_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
@@ -512,10 +512,10 @@ th3_cli_SOURCES += th3-cli-res.rc
 endif
 
 th3_cli_LDADD = \
-  $(LIBRAVEN_CLI) \
+  $(LIBTH3_CLI) \
   $(LIBUNIVALUE) \
-  $(LIBRAVEN_UTIL) \
-  $(LIBRAVEN_CRYPTO)
+  $(LIBTH3_UTIL) \
+  $(LIBTH3_CRYPTO)
 
 th3_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
@@ -532,10 +532,10 @@ endif
 
 th3_tx_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBRAVEN_COMMON) \
-  $(LIBRAVEN_UTIL) \
-  $(LIBRAVEN_CONSENSUS) \
-  $(LIBRAVEN_CRYPTO) \
+  $(LIBTH3_COMMON) \
+  $(LIBTH3_UTIL) \
+  $(LIBTH3_CONSENSUS) \
+  $(LIBTH3_CRYPTO) \
   $(LIBSECP256K1)
 
 th3_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
@@ -544,16 +544,16 @@ th3_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 # ravenconsensus library #
 if BUILD_RAVEN_LIBS
 include_HEADERS = script/ravenconsensus.h
-libravenconsensus_la_SOURCES = $(crypto_libraven_crypto_a_SOURCES) $(libraven_consensus_a_SOURCES)
+libth3consensus_la_SOURCES = $(crypto_libth3_crypto_a_SOURCES) $(libth3_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
-  libravenconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libth3consensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libravenconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libravenconsensus_la_LIBADD = $(LIBSECP256K1) $(BOOST_LIBS)
-libravenconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_RAVEN_INTERNAL
-libravenconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libth3consensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libth3consensus_la_LIBADD = $(LIBSECP256K1) $(BOOST_LIBS)
+libth3consensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_TH3_INTERNAL
+libth3consensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #
