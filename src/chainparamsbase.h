@@ -11,7 +11,7 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between raven-cli and ravend)
+ * CBaseChainParams defines the base parameters (shared between th3-cli and th3d)
  * of a given instance of the Raven system.
  */
 class CBaseChainParams

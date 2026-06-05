@@ -89,7 +89,7 @@
 const int64_t nStartupTime = GetTime();
 
 const char *const RAVEN_CONF_FILENAME = "th3.conf";
-const char *const RAVEN_PID_FILENAME = "ravend.pid";
+const char *const RAVEN_PID_FILENAME = "th3d.pid";
 
 ArgsManager gArgs;
 bool fPrintToConsole = false;
@@ -630,7 +630,7 @@ void ArgsManager::ReadConfigFile(const std::string &confPath)
 {
     fs::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good())
-        return; // No raven.conf file is OK
+        return; // No th3.conf file is OK
 
     {
         LOCK(cs_args);
@@ -639,7 +639,7 @@ void ArgsManager::ReadConfigFile(const std::string &confPath)
 
         for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
         {
-            // Don't overwrite existing settings so command line settings override raven.conf
+            // Don't overwrite existing settings so command line settings override th3.conf
             std::string strKey = std::string("-") + it->string_key;
             std::string strValue = it->value[0];
             InterpretNegativeSetting(strKey, strValue);
