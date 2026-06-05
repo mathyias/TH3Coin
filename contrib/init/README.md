@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: ravend.service
-Upstart: ravend.conf
-OpenRC:  ravend.openrc
-         ravend.openrcconf
-CentOS:  ravend.init
-OS X:    org.raven.ravend.plist
+SystemD: th3d.service
+Upstart: th3d.conf
+OpenRC:  th3d.openrc
+         th3d.openrcconf
+CentOS:  th3d.init
+OS X:    org.th3.th3d.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

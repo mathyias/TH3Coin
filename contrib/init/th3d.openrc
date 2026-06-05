@@ -2,26 +2,26 @@
 
 # backward compatibility for existing gentoo layout 
 #
-if [ -d "/var/lib/raven/.raven" ]; then
-	RAVEND_DEFAULT_DATADIR="/var/lib/raven/.raven"
+if [ -d "/var/lib/raven/.th3" ]; then
+	RAVEND_DEFAULT_DATADIR="/var/lib/raven/.th3"
 else
-	RAVEND_DEFAULT_DATADIR="/var/lib/ravend"
+	RAVEND_DEFAULT_DATADIR="/var/lib/th3d"
 fi
 
-RAVEND_CONFIGFILE=${RAVEND_CONFIGFILE:-/etc/raven/raven.conf}
-RAVEND_PIDDIR=${RAVEND_PIDDIR:-/var/run/ravend}
-RAVEND_PIDFILE=${RAVEND_PIDFILE:-${RAVEND_PIDDIR}/ravend.pid}
+RAVEND_CONFIGFILE=${RAVEND_CONFIGFILE:-/etc/th3/th3.conf}
+RAVEND_PIDDIR=${RAVEND_PIDDIR:-/var/run/th3d}
+RAVEND_PIDFILE=${RAVEND_PIDFILE:-${RAVEND_PIDDIR}/th3d.pid}
 RAVEND_DATADIR=${RAVEND_DATADIR:-${RAVEND_DEFAULT_DATADIR}}
 RAVEND_USER=${RAVEND_USER:-${RAVEN_USER:-raven}}
 RAVEND_GROUP=${RAVEND_GROUP:-raven}
-RAVEND_BIN=${RAVEND_BIN:-/usr/bin/ravend}
+RAVEND_BIN=${RAVEND_BIN:-/usr/bin/th3d}
 RAVEND_NICE=${RAVEND_NICE:-${NICELEVEL:-0}}
 RAVEND_OPTS="${RAVEND_OPTS:-${RAVEN_OPTS}}"
 
-name="Raven Core Daemon"
-description="Raven cryptocurrency P2P network daemon"
+name="TH3 Core Daemon"
+description="TH3 cryptocurrency P2P network daemon"
 
-command="/usr/bin/ravend"
+command="/usr/bin/th3d"
 command_args="-pid=\"${RAVEND_PIDFILE}\" \
 		-conf=\"${RAVEND_CONFIGFILE}\" \
 		-datadir=\"${RAVEND_DATADIR}\" \
@@ -71,7 +71,7 @@ checkconfig()
 {
 	if ! grep -qs '^rpcpassword=' "${RAVEND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run ravend."
+		eerror "ERROR: You must set a secure rpcpassword to run th3d."
 		eerror "The setting must appear in ${RAVEND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "
@@ -84,7 +84,7 @@ checkconfig()
 		eerror "It is recommended that you also set alertnotify so you are "
 		eerror "notified of problems:"
 		eerror ""
-		eerror "ie: alertnotify=echo %%s | mail -s \"Raven Alert\"" \
+		eerror "ie: alertnotify=echo %%s | mail -s \"TH3 Alert\"" \
 			"admin@foo.com"
 		eerror ""
 		return 1

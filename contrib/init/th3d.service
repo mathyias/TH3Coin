@@ -1,5 +1,5 @@
 [Unit]
-Description=Raven's distributed currency daemon
+Description=TH3's distributed currency daemon
 After=network.target
 
 [Service]
@@ -7,9 +7,9 @@ User=raven
 Group=raven
 
 Type=forking
-PIDFile=/var/lib/ravend/ravend.pid
-ExecStart=/usr/bin/ravend -daemon -pid=/var/lib/ravend/ravend.pid \
--conf=/etc/raven/raven.conf -datadir=/var/lib/ravend -disablewallet
+PIDFile=/var/lib/th3d/th3d.pid
+ExecStart=/usr/bin/th3d -daemon -pid=/var/lib/th3d/th3d.pid \
+-conf=/etc/th3/th3.conf -datadir=/var/lib/th3d -disablewallet
 
 Restart=always
 PrivateTmp=true
