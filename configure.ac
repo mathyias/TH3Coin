@@ -12,7 +12,7 @@ define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[TH3 Core]])
 AC_INIT([TH3 Core],m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION, m4_if(_CLIENT_VERSION_BUILD, [0], [], _CLIENT_VERSION_BUILD))m4_if(_CLIENT_VERSION_RC, [0], [], [test]_CLIENT_VERSION_RC),[https://github.com/mathyias/TH3Coin/issues],[TH3],[https://th3chain.cloud/])
 
 AC_CONFIG_SRCDIR([src/validation.cpp])
-AC_CONFIG_HEADERS([src/config/raven-config.h])
+AC_CONFIG_HEADERS([src/config/th3-config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([build-aux/m4])
 
@@ -29,9 +29,9 @@ fi
 
 AC_CANONICAL_HOST
 
-AH_TOP([#ifndef RAVEN_CONFIG_H])
-AH_TOP([#define RAVEN_CONFIG_H])
-AH_BOTTOM([#endif //RAVEN_CONFIG_H])
+AH_TOP([#ifndef TH3_CONFIG_H])
+AH_TOP([#define TH3_CONFIG_H])
+AH_BOTTOM([#endif //TH3_CONFIG_H])
 
 dnl faketime breaks configure and is only needed for make. Disable it here.
 unset FAKETIME
@@ -518,7 +518,7 @@ AC_C_BIGENDIAN
 dnl Check for pthread compile/link requirements
 AX_PTHREAD
 
-# The following macro will add the necessary defines to raven-config.h, but
+# The following macro will add the necessary defines to th3-config.h, but
 # they also need to be passed down to any subprojects. Pull the results out of
 # the cache and add them to CPPFLAGS.
 AC_SYS_LARGEFILE
