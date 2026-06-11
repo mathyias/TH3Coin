@@ -9,10 +9,11 @@ Useful links
 ------------
 
 - Website: https://th3chain.cloud
+- Listing Info: https://th3chain.cloud/listing.html
 - Wallet: https://wallet.th3chain.cloud
 - Explorer: https://explorer.th3chain.cloud
 - API: https://api.th3chain.cloud
-- Mining: https://miner.th3chain.cloud
+- Mining Pool: https://pool.th3chain.cloud
 - Source: https://github.com/mathyias/TH3Coin
 
 Build
