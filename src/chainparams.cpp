@@ -232,7 +232,7 @@ public:
         };
 
         
-        /** RVN Start **/
+        /** TH3 asset parameters **/
         // Burn Amounts
         nIssueAssetBurnAmount = 500 * COIN;
         nReissueAssetBurnAmount = 100 * COIN;
@@ -245,18 +245,18 @@ public:
         nAddNullQualifierTagBurnAmount = .1 * COIN;
 
         // Burn Addresses
-        strIssueAssetBurnAddress = "RXissueAssetXXXXXXXXXXXXXXXXXhhZGt";
-        strReissueAssetBurnAddress = "RXReissueAssetXXXXXXXXXXXXXXVEFAWu";
-        strIssueSubAssetBurnAddress = "RXissueSubAssetXXXXXXXXXXXXXWcwhwL";
-        strIssueUniqueAssetBurnAddress = "RXissueUniqueAssetXXXXXXXXXXWEAe58";
-        strIssueMsgChannelAssetBurnAddress = "RXissueMsgChanneLAssetXXXXXXSjHvAY";
-        strIssueQualifierAssetBurnAddress = "RXissueQuaLifierXXXXXXXXXXXXUgEDbC";
-        strIssueSubQualifierAssetBurnAddress = "RXissueSubQuaLifierXXXXXXXXXVTzvv5";
-        strIssueRestrictedAssetBurnAddress = "RXissueRestrictedXXXXXXXXXXXXzJZ1q";
-        strAddNullQualifierTagBurnAddress = "RXaddTagBurnXXXXXXXXXXXXXXXXZQm5ya";
+        strIssueAssetBurnAddress = "TH31LjYYpsyoVB1dWMXDjC6AgsMr925q15HNq";
+        strReissueAssetBurnAddress = "TH31VoByHJP2Sr24wqadbun5gmJxCzY5m3u6G";
+        strIssueSubAssetBurnAddress = "TH31MY3NXnwDZky5VDDtfksP9Ke4Tvazsdayg";
+        strIssueUniqueAssetBurnAddress = "TH31ELK1mtWy34gATfZAfcmJfteJGzxRbAwgq";
+        strIssueMsgChannelAssetBurnAddress = "TH31XgzqqAYMmrcWnQ4YdRTtVXz7qiQApk1yK";
+        strIssueQualifierAssetBurnAddress = "TH31G4m19MKj36dJGXfeDJTjN272A1kv7Xtc7";
+        strIssueSubQualifierAssetBurnAddress = "TH31SasvFf1JgBZdPkkuxxxeTx69PpgvGdPQG";
+        strIssueRestrictedAssetBurnAddress = "TH31GFsqWXjEcho1a5FMC2GthTqeLbk2kf2ct";
+        strAddNullQualifierTagBurnAddress = "TH31LLBYwc7Zex8PyJAQgzUJaVS4RBQVMxugP";
 
             //Global Burn Address
-        strGlobalBurnAddress = "RXBurnXXXXXXXXXXXXXXXXXXXXXXWUo9FV";
+        strGlobalBurnAddress = "TH31DpbHhLq19Ri4DrL96PxWevsaq3AD9UWmo";
 
         // DGW Activation
         nDGWActivationBlock = 0;
@@ -269,9 +269,9 @@ public:
         nMessagingActivationBlock = 0; // Messaging activated block height
         nRestrictedActivationBlock = 0; // Restricted activated block height
 
-        nKAAAWWWPOWActivationTime = 1781184187; // UTC: Wed May 06 2020 18:00:00
+        nKAAAWWWPOWActivationTime = 1781184187; // TH3 reset genesis time + 1
         nKAWPOWActivationTime = 1781184187;
-        /** RVN End **/
+        /** TH3 asset parameters end **/
     }
 };
 
@@ -453,7 +453,7 @@ public:
             0.02        // * estimated number of transactions per second after that timestamp
         };
 
-        /** RVN Start **/
+        /** TH3 asset parameters **/
         // Burn Amounts
         nIssueAssetBurnAmount = 500 * COIN;
         nReissueAssetBurnAmount = 100 * COIN;
@@ -492,7 +492,7 @@ public:
 
         nKAAAWWWPOWActivationTime = 1585159200; //Wed Mar 25 2020 18:00:00 UTC
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
-        /** RVN End **/
+        /** TH3 asset parameters end **/
     }
 };
 
@@ -655,7 +655,7 @@ public:
         // Raven BIP44 cointype in regtest
         nExtCoinType = 1;
 
-        /** RVN Start **/
+        /** TH3 asset parameters **/
         // Burn Amounts
         nIssueAssetBurnAmount = 500 * COIN;
         nReissueAssetBurnAmount = 100 * COIN;
@@ -697,7 +697,7 @@ public:
         // If you are looking to test the kawpow hashing function in regtest. You will need to change this number
         nKAAAWWWPOWActivationTime = 3582830167;
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
-        /** RVN End **/
+        /** TH3 asset parameters end **/
     }
 };
 
