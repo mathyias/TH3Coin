@@ -123,8 +123,8 @@ public:
         consensus.nBIP66Enabled = true;
         consensus.nSegwitEnabled = true;
         consensus.nCSVEnabled = true;
-        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.kawpowLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Estimated starting diff for first 180 kawpow blocks
+        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.kawpowLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Estimated starting diff for first 180 kawpow blocks
         consensus.nPowTargetTimespan = 2016 * 60; // 1.4 days
         consensus.nPowTargetSpacing = 1 * 60;
 		consensus.fPowAllowMinDifficultyBlocks = false;
@@ -174,7 +174,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); // Block 2383567
 
         // By default assume that the signatures in ancestors of this block are valid. Block# 1040000
-        consensus.defaultAssumeValid = uint256S("0x07d371cfa42dd20611ea4ed660c35b2a7060b08738d8406a6f05c09d7a68d7a2");
+        consensus.defaultAssumeValid = uint256S("0x000003b6945e94235f0cc6e81af307a09f4b7354df86cd58b5afde06fb3c1012");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -190,28 +190,24 @@ public:
 
         
 
-        genesis = CreateGenesisBlock(1780227581, 1, 0x207fffff, 4, 2137 * COIN);
+        genesis = CreateGenesisBlock(1781184186, 3679889, 0x1e0fffff, 4, 2137 * COIN);
 
+        consensus.hashGenesisBlock = uint256S("0x000003b6945e94235f0cc6e81af307a09f4b7354df86cd58b5afde06fb3c1012");
 
-        consensus.hashGenesisBlock = uint256S("0x07d371cfa42dd20611ea4ed660c35b2a7060b08738d8406a6f05c09d7a68d7a2");
+        assert(consensus.hashGenesisBlock == uint256S("0x000003b6945e94235f0cc6e81af307a09f4b7354df86cd58b5afde06fb3c1012"));
+        assert(genesis.hashMerkleRoot == uint256S("0x49f98e6385039dbe5cfc6f52b8e7adb3006cc89fbf4c0cd526ae343e4ae90f36"));
 
-
-        assert(consensus.hashGenesisBlock ==uint256S("0x07d371cfa42dd20611ea4ed660c35b2a7060b08738d8406a6f05c09d7a68d7a2"));
-		assert(genesis.hashMerkleRoot == uint256S("0x49f98e6385039dbe5cfc6f52b8e7adb3006cc89fbf4c0cd526ae343e4ae90f36"));
-
-		
-		
         vSeeds.emplace_back("seed.th3chain.cloud", false);
         vSeeds.emplace_back("seed2.th3chain.cloud", false);
         //vSeeds.emplace_back("seed-raven.ravencoin.org", false);
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,65);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,122);
+        base58Prefixes[PUBKEY_ADDRESS] = {0xc2, 0x6a, 0xe5};
+        base58Prefixes[SCRIPT_ADDRESS] = {0xc2, 0x77, 0xd8};
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
-        // Raven BIP44 cointype in mainnet is '175'
+        // TH3 BIP44 cointype in mainnet is '175'
         nExtCoinType = 175;
 
         //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
@@ -225,12 +221,12 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                { 0, uint256S("0x07d371cfa42dd20611ea4ed660c35b2a7060b08738d8406a6f05c09d7a68d7a2")},
+                { 0, uint256S("0x000003b6945e94235f0cc6e81af307a09f4b7354df86cd58b5afde06fb3c1012")},
             }
         };
 
         chainTxData = ChainTxData{
-            1780227581, // Ten sam nTime co w genesis
+            1781184186, // TH3 reset genesis time
             0,          // Liczba transakcji 0
             0           // Prędkość 0
         };
@@ -273,8 +269,8 @@ public:
         nMessagingActivationBlock = 0; // Messaging activated block height
         nRestrictedActivationBlock = 0; // Restricted activated block height
 
-        nKAAAWWWPOWActivationTime = 1780227582; // UTC: Wed May 06 2020 18:00:00
-        nKAWPOWActivationTime = 1780227582;
+        nKAAAWWWPOWActivationTime = 1781184187; // UTC: Wed May 06 2020 18:00:00
+        nKAWPOWActivationTime = 1781184187;
         /** RVN End **/
     }
 };
