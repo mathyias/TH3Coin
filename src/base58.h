@@ -102,6 +102,8 @@ public:
  */
 class CRavenAddress : public CBase58Data {
 public:
+    bool SetString(const char* pszAddress);
+    bool SetString(const std::string& strAddress);
     bool Set(const CKeyID &id);
     bool Set(const CScriptID &id);
     bool Set(const CTxDestination &dest);

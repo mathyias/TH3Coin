@@ -229,6 +229,26 @@ public:
 
 } // namespace
 
+bool CRavenAddress::SetString(const char* pszAddress)
+{
+    const CChainParams& params = GetParams();
+
+    if (CBase58Data::SetString(pszAddress, params.Base58Prefix(CChainParams::PUBKEY_ADDRESS).size()) && IsValid(params))
+        return true;
+
+    if (CBase58Data::SetString(pszAddress, params.Base58Prefix(CChainParams::SCRIPT_ADDRESS).size()) && IsValid(params))
+        return true;
+
+    vchData.clear();
+    vchVersion.clear();
+    return false;
+}
+
+bool CRavenAddress::SetString(const std::string& strAddress)
+{
+    return SetString(strAddress.c_str());
+}
+
 bool CRavenAddress::Set(const CKeyID& id)
 {
     SetData(GetParams().Base58Prefix(CChainParams::PUBKEY_ADDRESS), &id, 20);
