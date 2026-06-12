@@ -14,6 +14,9 @@ Useful links
 - Explorer: https://explorer.th3chain.cloud
 - API: https://api.th3chain.cloud
 - Mining Pool: https://pool.th3chain.cloud
+- X / Twitter: https://x.com/TH3ChainCloud
+- Telegram: https://t.me/TH3ChainCloud
+- Contact: contact@th3chain.cloud
 - Source: https://github.com/mathyias/TH3Coin
 
 Build
